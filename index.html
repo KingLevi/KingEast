@@ -69,9 +69,7 @@
 	        font-size: 16px; /* 字体大小 */
 	      
         }
-        .container input:focus {
-            width: 400px;
-        }
+     
         .container input[type='submit']:hover {
             cursor: pointer;
             width: 400px;
@@ -234,18 +232,53 @@
                 transform: translateY(-500)
             }
         }
+        
+        #lname{
+         font-size:14px;
+         font-style:italic;
+         color:white;
+         position:absolute;
+         left:440px;
+         top:85px;
+        }
+        #lpwd{
+        font-style:italic;
+         color:white;
+         position:absolute;
+         left:440px;
+         top:152px;
+        }
     </style>
+
+<script language="javascript">
+
+function check() {
+	if (formregister.username.value !="wangdong") {
+		document.getElementById("lname").innerHTML = "账号是你名字~▽~";
+		return false;
+	} else if (formregister.password.value != "0619") {
+		document.getElementById("lname").innerHTML = "";
+		document.getElementById("lpwd").innerHTML  = "密码是你生日(~▽~)";  
+		return false;
+	} else {
+		document.getElementById("lpwd").innerHTML  = "";  
+		return true;
+	}
+}
+</script>
 </head>
 <body>
     <div class="wrap">
         <div class="container">
             <h1>登录</h1>
-            <form action="succ.jsp" method="post">
-                <input type="text" name="username" placeholder="账号"/>
-                <input type="password" name="password" placeholder="密码"/>
+            <form name="formregister" method="post" id="myform" action="succ.jsp" onSubmit="return check()" method="post">
+                <input type="text" name="username" onclick="check();"  placeholder="账号"/>
+                <label id="lname"></label>
+                <input type="password" name="password" onclick="check();" placeholder="密码"/>
+                <label id="lpwd"></label>
                 <input type="submit" value="提交"/>
                <div id="link">
-                <a id="register">注册</a> 
+              
                </div>
             </form>
         </div>
